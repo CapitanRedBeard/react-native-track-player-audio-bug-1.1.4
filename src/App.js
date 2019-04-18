@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 import TrackPlayer from 'react-native-track-player';
+import { dependencies } from '../package.json';
 
 const AUDIO_TRACKS = [
   {
@@ -105,11 +106,13 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Text>react-native-track-player version: {dependencies['react-native-track-player']}</Text>
         <Text>Audio State: {audioState}</Text>
         <Text>Current Track: {currentTrackId}</Text>
         {
           AUDIO_TRACKS.map((track => (
             <AudioButton
+              key={track.id}
               track={track}
               audioStateLabel={audioStateLabel}
               currentTrackId={currentTrackId}
