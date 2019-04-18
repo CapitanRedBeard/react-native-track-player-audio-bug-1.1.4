@@ -81,10 +81,10 @@ export default class App extends React.Component {
           TrackPlayer.play()
         }
       } else {
+        this.setState({currentTrackId: track.id})
         TrackPlayer.reset()
         await TrackPlayer.add(track)
         TrackPlayer.play();
-        this.setState({currentTrackId: track.id})
       }
       const queue = await TrackPlayer.getQueue();
       console.log('Queue: ', queue);
