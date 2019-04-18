@@ -68,6 +68,8 @@ export default class App extends React.Component {
         })
       }
     })
+
+    TrackPlayer.add(AUDIO_TRACKS)
   }
 
   handleAudioToggle = async (track) => {
@@ -82,12 +84,13 @@ export default class App extends React.Component {
         }
       } else {
         this.setState({currentTrackId: track.id})
-        TrackPlayer.reset()
-        await TrackPlayer.add(track)
+        // TrackPlayer.reset()
+        // await TrackPlayer.add(track)
+        await TrackPlayer.skip(track.id)
         TrackPlayer.play();
       }
-      const queue = await TrackPlayer.getQueue();
-      console.log('Queue: ', queue);
+      // const queue = await TrackPlayer.getQueue();
+      // console.log('Queue: ', queue);
     } catch (error) {
       console.warn(error)
     }
